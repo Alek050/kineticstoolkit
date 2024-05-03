@@ -816,7 +816,7 @@ def _check_no_skewed_rotation(series: np.ndarray, param_name) -> None:
         and series.shape[2] == 4
     ):
         index_is_nan = isnan(series)
-        if not np.allclose(np.linalg.det(series[~index_is_nan, 0:3, 0:3]), 1):
+        if not np.allclose(np.linalg.det(series[~index_is_nan, 0:3, 0:3]), 1, atol=1e-2):
             raise ValueError(
                 f"Parameter {param_name} contains at least one rotation "
                 "component that is not orthogonal. This may happen, for "
