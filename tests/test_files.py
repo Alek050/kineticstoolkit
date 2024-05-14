@@ -155,18 +155,6 @@ def test_read_c3d():
     )
 
 
-<<<<<<< HEAD
-def test_read_c3d_rotations():
-    """Test read_c3d with a file containing only rotation matrices."""
-    c3d = ktk.read_c3d(ktk.doc.download("C3DRotationExample.c3d"))
-
-    assert len(c3d["Points"].data) == 0
-    assert "Analogs" not in c3d.keys()
-    for key in c3d["Rotations"].data.keys():
-        assert c3d["Rotations"].data[key].shape == (340, 4, 4)
-    assert c3d["Rotations"].time_info["Unit"] == "s"
-    np.testing.assert_allclose(c3d["Rotations"].time, np.arange(0, 340) / 85)
-=======
 def test_read_c3d_many_analogs():
     """Test fix https://github.com/kineticstoolkit/kineticstoolkit/issues/231"""
     contents = ktk.read_c3d(
@@ -174,7 +162,6 @@ def test_read_c3d_many_analogs():
         convert_point_unit=False,
     )
     assert len(contents["Analogs"].data) == 922
->>>>>>> 1a881ce20995f6a4d0bcf7447b536a97def63bef
 
 
 def test_read_c3d_testsuite1():
